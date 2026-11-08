@@ -1,42 +1,96 @@
-# LlamaIndex Agents Skill
+# claude-agents-llamaindex-skill
 
-A Claude skill for building context-aware LLM applications with LlamaIndex. It focuses on agents, data connectors, and query engines, helping developers connect source data to retrieval and agent workflows.
+A Claude Code skill for building data-centric LLM applications with LlamaIndex, including ingestion, indexing, retrieval, query engines, and agent workflows.
 
-## What This Skill Covers
+## Overview
 
-- Understanding agent workflows built with LlamaIndex.
-- Connecting documents and external data sources.
-- Preparing data for indexing and retrieval.
-- Selecting and configuring query engines.
-- Combining retrieval with agent capabilities.
-- Structuring an application around the data and questions it needs to support.
+LlamaIndex provides building blocks for connecting language models to external data. This skill helps design retrieval-augmented generation (RAG) systems, prepare documents, create indexes, query knowledge collections, and add agent behavior where it improves the application.
 
-## Repository Structure
+## Main Capabilities
 
-- `SKILL.md`: Main skill instructions and framework overview.
-- `references/agents.md`: Additional guidance on LlamaIndex agents.
-- `references/data_connectors.md`: Reference material for connecting and ingesting data.
-- `references/query_engines.md`: Guidance for query-engine concepts and workflows.
-- `LICENSE`: MIT License for this repository.
+- Connect to document and data sources.
+- Ingest, parse, and transform content.
+- Build indexes for retrieval.
+- Select vector, keyword, or hybrid retrieval patterns.
+- Configure query engines and response synthesis.
+- Build agents that use data tools.
+- Combine retrieval with multi-step reasoning.
+- Evaluate retrieval quality and answer grounding.
 
 ## When to Use It
 
-Use this skill when building an application that needs to ingest external information, index it, retrieve relevant context, and answer questions over that data. It is also useful when evaluating how agent behaviour should interact with data connectors and query engines.
+Use this skill when building:
 
-## Getting Started
+- Document question-answering systems.
+- Internal knowledge assistants.
+- Search and retrieval applications.
+- RAG pipelines over private datasets.
+- Agents that need access to structured or unstructured information.
+- Multimodal data applications where supported.
 
-1. Read `SKILL.md` for the main concepts and recommended workflow.
-2. Identify the data sources the application needs to access.
-3. Choose and configure the appropriate connectors.
-4. Prepare and index the data for retrieval.
-5. Select a query engine that matches the application's retrieval needs.
-6. Add agent behaviour only where it provides value beyond a direct query workflow.
-7. Test retrieval and response quality with representative questions.
+## Installation
 
-## Implementation Guidance
+Install the LlamaIndex packages required by the project, then clone the skill:
 
-Treat ingestion, indexing, retrieval, and response generation as separate stages when debugging. Validate that the correct data is available to the query engine before changing prompts or model settings. Keep connectors and query logic aligned with the data sources and use cases the application actually supports.
+```bash
+git clone https://github.com/Brajesh31/claude-agents-llamaindex-skill.git ~/.claude/skills/agents-llamaindex
+```
 
-## License
+Package selection depends on the data connectors, model provider, and index types used. Avoid installing every integration when only a subset is needed.
 
-Released under the MIT License. See [LICENSE](LICENSE) for details.
+## Usage
+
+Invoke the skill when designing or implementing a LlamaIndex workflow:
+
+```text
+/agents-llamaindex
+```
+
+Provide the data sources, document formats, expected query types, model environment, privacy constraints, and scale requirements.
+
+## Recommended RAG Workflow
+
+1. Identify the data sources and access permissions.
+2. Ingest representative documents.
+3. Parse and normalize content.
+4. Split documents into appropriate chunks.
+5. Attach stable metadata and identifiers.
+6. Build the selected index.
+7. Configure retrieval and ranking.
+8. Generate answers with relevant context.
+9. Evaluate retrieval and answer quality.
+10. Monitor freshness, latency, and failure cases.
+
+## Agent Design
+
+Add an agent only when the workflow requires decisions or tool selection beyond a direct retrieval query. Keep tool contracts narrow, validate inputs, and define which operations require approval.
+
+## Reference Guide
+
+| File | Purpose |
+|---|---|
+| `references/agents.md` | Agent workflows and tool use |
+| `references/data_connectors.md` | Data ingestion and connectors |
+| `references/query_engines.md` | Query engine design and retrieval |
+
+## Quality Checklist
+
+- Ingestion respects source permissions.
+- Documents retain useful metadata.
+- Chunking preserves relevant context.
+- Retrieval returns evidence relevant to the question.
+- Answers are grounded in retrieved material.
+- Empty or weak retrieval results are handled honestly.
+- Index updates and deletions are managed.
+- Evaluation includes representative and adversarial questions.
+- Sensitive source content is not exposed to unauthorized users.
+
+## Repository Contents
+
+- `SKILL.md`: Main LlamaIndex skill instructions.
+- `references/`: Agent, connector, and query-engine guidance.
+- `README.md`: Setup, RAG workflow, and quality checklist.
+
+## Practical Guidance
+
+Do not tune prompts to compensate for broken ingestion or poor retrieval. Diagnose each stage separately: source access, parsing, chunking, indexing, retrieval, and answer generation.
